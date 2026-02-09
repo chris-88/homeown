@@ -4,11 +4,13 @@
     <meta charset="utf-8" />
     <meta http-equiv="refresh" content="0; url=/" />
     <script>
-      // SPA redirect for root domain hosting
+      // SPA redirect that supports both project pages and custom domains
       var path = window.location.pathname;
       var query = window.location.search;
       var hash = window.location.hash;
-      var target = "/?redirect=" + encodeURIComponent(path + query + hash);
+      var base = path.startsWith("/homeown/") ? "/homeown" : "";
+      var cleanPath = path.replace(base, "") || "/";
+      var target = base + "/?redirect=" + encodeURIComponent(cleanPath + query + hash);
       window.location.replace(target);
     </script>
   </head>
