@@ -24,6 +24,7 @@ export function Hero({
   secondaryCta,
   onPrimaryClick,
   onSecondaryClick,
+  disclaimer,
 }: {
   title: string
   subtitle: string
@@ -31,46 +32,53 @@ export function Hero({
   secondaryCta: { label: string; href: string }
   onPrimaryClick?: () => void
   onSecondaryClick?: () => void
+  disclaimer: string
 }) {
   return (
-    <Section className="pt-24">
+    <Section className="bg-green pt-24 text-cream">
       <Container className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
         <div className="space-y-6">
-          <p className="text-sm uppercase tracking-[0.22em] text-muted-foreground">Homeown</p>
-          <h1 className="text-4xl font-semibold leading-tight text-foreground md:text-5xl">
+          <p className="text-sm font-medium uppercase tracking-[0.22em] text-cream/70">Homeown</p>
+          <h1 className="text-4xl font-bold leading-tight tracking-tight md:text-5xl">
             {title}
           </h1>
-          <p className="text-lg text-muted-foreground">{subtitle}</p>
+          <p className="text-base leading-7 text-cream/80 md:text-lg max-w-[65ch]">{subtitle}</p>
           <div className="flex flex-wrap gap-3">
             <Button asChild size="lg" className="rounded-full">
               <Link to={primaryCta.href} onClick={onPrimaryClick}>
                 {primaryCta.label}
               </Link>
             </Button>
-            <Button asChild variant="outline" size="lg" className="rounded-full">
+            <Button
+              asChild
+              variant="outline"
+              size="lg"
+              className="rounded-full border-cream/50 text-cream hover:opacity-80"
+            >
               <Link to={secondaryCta.href} onClick={onSecondaryClick}>
                 {secondaryCta.label}
               </Link>
             </Button>
           </div>
+          <p className="text-sm text-cream/70 max-w-[65ch]">{disclaimer}</p>
         </div>
-        <div className="glass-card rounded-3xl border border-white/60 p-6 md:p-8">
+        <div className="card-structural border border-green-30 bg-secondary p-6 md:p-8">
           <div className="space-y-6">
-            <p className="text-sm font-medium uppercase tracking-[0.22em] text-muted-foreground">
+            <p className="text-sm font-medium uppercase tracking-[0.22em] text-cream/70">
               A structured pathway
             </p>
             <div className="space-y-4">
               {["Clear eligibility steps", "Licence to occupy", "Regulated mortgage completion"].map(
                 (item) => (
                   <div key={item} className="flex items-start gap-3">
-                    <div className="mt-1 h-2 w-2 rounded-full bg-primary" />
-                    <p className="text-base text-foreground">{item}</p>
+                    <div className="mt-1 h-2 w-2 rounded-full bg-green" />
+                    <p className="text-base text-cream">{item}</p>
                   </div>
                 ),
               )}
             </div>
-            <div className="rounded-2xl border border-border bg-white/60 p-4">
-              <p className="text-sm text-muted-foreground">
+            <div className="rounded-2xl border border-green-30 bg-secondary p-4">
+              <p className="text-sm text-cream/70">
                 Homeown is not a loan, tenancy, or savings product. No ownership exists until completion.
               </p>
             </div>
@@ -89,15 +97,15 @@ export function CardGrid({
   cards: { title: string; body: string }[]
 }) {
   return (
-    <Section>
+    <Section className="bg-secondary">
       <Container>
         <div className="flex flex-col gap-10">
-          <h2 className="text-3xl font-semibold">{title}</h2>
+          <h2 className="text-2xl font-semibold text-cream md:text-3xl">{title}</h2>
           <div className="grid gap-6 md:grid-cols-3">
             {cards.map((card) => (
-              <div key={card.title} className="glass-card rounded-2xl border border-border p-6">
-                <h3 className="text-xl font-semibold">{card.title}</h3>
-                <p className="mt-3 text-sm text-muted-foreground">{card.body}</p>
+              <div key={card.title} className="card-structural p-6">
+                <h3 className="text-xl font-semibold text-cream">{card.title}</h3>
+                <p className="mt-3 text-base leading-7 text-cream/70 md:text-lg">{card.body}</p>
               </div>
             ))}
           </div>
@@ -109,20 +117,20 @@ export function CardGrid({
 
 export function Stepper({ steps }: { steps: { title: string; body: string }[] }) {
   return (
-    <Section className="bg-white/60">
+    <Section className="bg-green text-cream">
       <Container>
         <div className="space-y-8">
-          <h2 className="text-3xl font-semibold">How it works</h2>
+          <h2 className="text-2xl font-semibold md:text-3xl">How it works</h2>
           <div className="grid gap-6 md:grid-cols-2">
             {steps.map((step, index) => (
-              <div key={step.title} className="rounded-2xl border border-border bg-white/80 p-6">
+              <div key={step.title} className="rounded-2xl border border-green-30 bg-secondary p-6 text-cream">
                 <div className="flex items-center gap-3">
-                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-sm font-semibold text-primary-foreground">
+                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-green text-sm font-semibold text-cream">
                     {index + 1}
                   </span>
                   <h3 className="text-xl font-semibold">{step.title}</h3>
                 </div>
-                <p className="mt-4 text-sm text-muted-foreground">{step.body}</p>
+                <p className="mt-4 text-base leading-7 text-cream/70 md:text-lg">{step.body}</p>
               </div>
             ))}
           </div>
@@ -140,16 +148,16 @@ export function SplitPanel({
   right: { title: string; items: string[] }
 }) {
   return (
-    <Section>
+    <Section className="bg-secondary">
       <Container>
         <div className="grid gap-6 lg:grid-cols-2">
           {[left, right].map((panel) => (
-            <div key={panel.title} className="rounded-3xl border border-border bg-white/80 p-8">
-              <h3 className="text-2xl font-semibold">{panel.title}</h3>
-              <ul className="mt-4 space-y-3 text-sm text-muted-foreground">
+            <div key={panel.title} className="rounded-3xl border border-green-30 bg-secondary p-8">
+              <h3 className="text-2xl font-semibold text-cream">{panel.title}</h3>
+              <ul className="mt-4 space-y-3 text-base leading-7 text-cream/70 md:text-lg">
                 {panel.items.map((item) => (
                   <li key={item} className="flex items-start gap-3">
-                    <span className="mt-2 h-1.5 w-1.5 rounded-full bg-primary" />
+                    <span className="mt-2 h-1.5 w-1.5 rounded-full bg-green" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -177,12 +185,12 @@ export function CTASection({
   }[]
 }) {
   return (
-    <Section className="bg-secondary/60">
+    <Section className="bg-green text-cream">
       <Container>
-        <div className="flex flex-col items-start justify-between gap-6 rounded-3xl border border-border bg-white/70 p-8 md:flex-row md:items-center">
+        <div className="flex flex-col items-start justify-between gap-6 rounded-3xl border border-green-30 bg-green p-8 md:flex-row md:items-center">
           <div>
             <h3 className="text-2xl font-semibold">{title}</h3>
-            <p className="mt-3 text-sm text-muted-foreground">{body}</p>
+            <p className="mt-3 text-base leading-7 text-cream/80 max-w-[65ch] md:text-lg">{body}</p>
           </div>
           <div className="flex flex-wrap gap-3">
             {ctas.map((cta) => (
@@ -190,7 +198,10 @@ export function CTASection({
                 key={cta.label}
                 asChild
                 variant={cta.variant ?? "default"}
-                className="rounded-full"
+                className={cn(
+                  "rounded-full",
+                  cta.variant === "outline" && "border-cream/50 text-cream hover:opacity-80",
+                )}
               >
                 <Link to={cta.href} onClick={cta.onClick}>
                   {cta.label}
@@ -206,17 +217,17 @@ export function CTASection({
 
 export function HighlightBand({ title, body, points }: { title: string; body: string; points: string[] }) {
   return (
-    <Section>
+    <Section className="bg-green text-cream">
       <Container>
-        <div className="grid gap-6 rounded-3xl border border-border bg-white/80 p-8 md:grid-cols-[1.2fr_0.8fr]">
+        <div className="grid gap-6 rounded-3xl border border-green-30 bg-green p-8 md:grid-cols-[1.2fr_0.8fr]">
           <div>
             <h3 className="text-2xl font-semibold">{title}</h3>
-            <p className="mt-3 text-sm text-muted-foreground">{body}</p>
+            <p className="mt-3 text-base leading-7 text-cream/80 max-w-[65ch] md:text-lg">{body}</p>
           </div>
           <div className="space-y-3">
             {points.map((point) => (
-              <div key={point} className="rounded-2xl border border-border bg-white/70 px-4 py-3">
-                <p className="text-sm font-medium text-foreground">{point}</p>
+              <div key={point} className="rounded-2xl border border-green-30 bg-secondary px-4 py-3 text-cream">
+                <p className="text-sm font-medium">{point}</p>
               </div>
             ))}
           </div>
@@ -254,7 +265,7 @@ export function FAQAccordion({
       {items.map((item) => {
         const isOpen = openId === item.id
         return (
-          <div key={item.id} id={item.id} className="rounded-2xl border border-border bg-white/80">
+          <div key={item.id} id={item.id} className="rounded-2xl border border-green-30 bg-secondary">
             <button
               type="button"
               className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left"
@@ -264,10 +275,14 @@ export function FAQAccordion({
                 onToggle?.(item.id)
               }}
             >
-              <span className="text-base font-semibold">{item.question}</span>
-              <span className="text-lg text-muted-foreground">{isOpen ? "–" : "+"}</span>
+              <span className="text-base font-semibold text-cream">{item.question}</span>
+              <span className="text-lg text-cream/70">{isOpen ? "–" : "+"}</span>
             </button>
-            {isOpen && <div className="px-6 pb-6 text-sm text-muted-foreground">{item.answer}</div>}
+            {isOpen && (
+              <div className="px-6 pb-6 text-base leading-7 text-cream/70 md:text-lg">
+                {item.answer}
+              </div>
+            )}
           </div>
         )
       })}
@@ -281,14 +296,14 @@ export function Timeline({ steps }: { steps: { title: string; body: string }[] }
       {steps.map((step, index) => (
         <div key={step.title} className="flex gap-4">
           <div className="flex flex-col items-center">
-            <div className="h-10 w-10 rounded-full border border-primary/40 bg-primary/10 text-sm font-semibold text-primary flex items-center justify-center">
+            <div className="h-10 w-10 rounded-full border border-green-30 bg-secondary text-sm font-semibold text-cream flex items-center justify-center">
               {index + 1}
             </div>
-            {index < steps.length - 1 && <div className="mt-2 h-full w-px bg-border" />}
+            {index < steps.length - 1 && <div className="mt-2 h-full w-px bg-green/30" />}
           </div>
-          <div className="rounded-2xl border border-border bg-white/80 p-5">
-            <h4 className="text-lg font-semibold">{step.title}</h4>
-            <p className="mt-2 text-sm text-muted-foreground">{step.body}</p>
+          <div className="rounded-2xl border border-green-30 bg-secondary p-5">
+            <h4 className="text-lg font-semibold text-cream">{step.title}</h4>
+            <p className="mt-2 text-base leading-7 text-cream/70 md:text-lg">{step.body}</p>
           </div>
         </div>
       ))}
@@ -298,11 +313,11 @@ export function Timeline({ steps }: { steps: { title: string; body: string }[] }
 
 export function PageHeader({ title, subtitle }: { title: string; subtitle: string }) {
   return (
-    <Section className="pt-20">
+    <Section className="bg-green pt-20 text-cream">
       <Container>
         <div className="space-y-3">
-          <h1 className="text-4xl font-semibold">{title}</h1>
-          <p className="text-base text-muted-foreground">{subtitle}</p>
+          <h1 className="text-4xl font-bold tracking-tight md:text-5xl">{title}</h1>
+          <p className="text-base leading-7 text-cream/80 max-w-[65ch] md:text-lg">{subtitle}</p>
         </div>
       </Container>
     </Section>

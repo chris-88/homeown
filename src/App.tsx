@@ -2,6 +2,7 @@ import { useEffect } from "react"
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import { Layout } from "@/components/layout/Layout"
 import { ScrollToTop } from "@/components/layout/ScrollToTop"
+import { Toaster } from "@/components/ui/toaster"
 import { initUtmFromLocation } from "@/lib/analytics/utm"
 import Home from "@/pages/Home"
 import HowItWorks from "@/pages/HowItWorks"
@@ -40,6 +41,7 @@ function App() {
           <Route path="/legal" element={<Legal />} />
         </Routes>
       </Layout>
+      <Toaster />
     </BrowserRouter>
   )
 }

@@ -1,14 +1,12 @@
 import { siteContent } from "@/content/siteContent"
 import { trackEvent } from "@/lib/analytics/events"
-import {
-  CardGrid,
-  CTASection,
-  Hero,
-  HighlightBand,
-  SplitPanel,
-  Stepper,
-} from "@/components/sections/Sections"
 import { usePageMeta } from "@/lib/seo/metadata"
+import { HeroBlock } from "@/components/blocks/HeroBlock"
+import { WhoItsFor } from "@/components/blocks/WhoItsFor"
+import { StepTimeline } from "@/components/blocks/StepTimeline"
+import { SplitPanel } from "@/components/blocks/SplitPanel"
+import { OutcomeCompare } from "@/components/blocks/OutcomeCompare"
+import { CTABand } from "@/components/blocks/CTABand"
 
 export default function Home() {
   usePageMeta({
@@ -19,41 +17,41 @@ export default function Home() {
 
   return (
     <>
-      <Hero
+      <HeroBlock
         title={siteContent.hero.title}
         subtitle={siteContent.hero.subtitle}
         primaryCta={siteContent.hero.primaryCta}
         secondaryCta={siteContent.hero.secondaryCta}
+        disclaimer={siteContent.hero.disclaimer}
         onPrimaryClick={() => trackEvent("cta_click", { location: "hero", label: "calculator" })}
         onSecondaryClick={() => trackEvent("cta_click", { location: "hero", label: "register" })}
       />
-      <CardGrid title={siteContent.whoItsFor.title} cards={siteContent.whoItsFor.cards} />
-      <Stepper steps={siteContent.howItWorksSteps.slice(0, 4)} />
+      <WhoItsFor title={siteContent.whoItsFor.title} cards={siteContent.whoItsFor.cards} />
+      <StepTimeline steps={siteContent.howItWorksSteps.slice(0, 4)} />
       <SplitPanel left={siteContent.whatItIs} right={siteContent.whatItIsNot} />
-      <HighlightBand
+      <OutcomeCompare
         title={siteContent.mqmPpa.title}
         body={siteContent.mqmPpa.body}
         points={["MQM is a monthly marker", "PPA applies only at completion", "No accumulation language"]}
+        showDefinitions
+        variant="chips"
       />
-      <HighlightBand
+      <OutcomeCompare
         title={siteContent.trust.title}
         body={siteContent.trust.body}
         points={siteContent.trust.points}
+        showDefinitions={false}
+        variant="cards"
       />
-      <CTASection
+      <CTABand
         title="Ready to see where you stand?"
-        body="Use the calculators or register interest. Calm, clear next steps."
+        body="Use the calculators to understand your current position."
         ctas={[
           {
             label: "Go to calculators",
             href: "/calculators",
-            onClick: () => trackEvent("cta_click", { location: "cta_band", label: "calculators" }),
-          },
-          {
-            label: "Register interest",
-            href: "/register",
             variant: "outline",
-            onClick: () => trackEvent("cta_click", { location: "cta_band", label: "register" }),
+            onClick: () => trackEvent("cta_click", { location: "cta_band", label: "calculators" }),
           },
         ]}
       />

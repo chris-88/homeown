@@ -17,6 +17,8 @@ export const siteContent = {
       "Homeown is a service pathway that ends in a standard regulated mortgage purchase. We focus on clarity, eligibility, and a realistic route to completion.",
     primaryCta: { label: "Check where you are on the journey", href: "/calculators" },
     secondaryCta: { label: "Register interest", href: "/register" },
+    disclaimer:
+      "Homeown is a service pathway. It is not a loan, credit, tenancy, or savings product. No ownership exists until completion.",
   },
   whoItsFor: {
     title: "Who this is for",

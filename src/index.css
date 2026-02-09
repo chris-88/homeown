@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
@@ -35,24 +35,33 @@
 
 :root {
   --radius: 0.75rem;
-  --background: oklch(0.985 0.01 92);
-  --foreground: oklch(0.18 0.02 80);
-  --card: oklch(0.99 0.01 92);
-  --card-foreground: oklch(0.18 0.02 80);
-  --popover: oklch(0.99 0.01 92);
-  --popover-foreground: oklch(0.18 0.02 80);
-  --primary: oklch(0.24 0.04 170);
-  --primary-foreground: oklch(0.98 0.01 92);
-  --secondary: oklch(0.95 0.015 92);
-  --secondary-foreground: oklch(0.22 0.02 80);
-  --muted: oklch(0.95 0.015 92);
-  --muted-foreground: oklch(0.5 0.02 80);
-  --accent: oklch(0.92 0.03 160);
-  --accent-foreground: oklch(0.2 0.02 80);
+  --green: #123a28;
+  --cream: #e7d4bb;
+  --background: var(--green);
+  --foreground: var(--cream);
+  --card: color-mix(in srgb, var(--cream) 7%, transparent);
+  --card-foreground: var(--cream);
+  --popover: color-mix(in srgb, var(--cream) 7%, transparent);
+  --popover-foreground: var(--cream);
+  --primary: var(--green);
+  --primary-foreground: var(--cream);
+  --secondary: var(--green);
+  --secondary-foreground: var(--cream);
+  --muted: color-mix(in srgb, var(--cream) 70%, transparent);
+  --muted-foreground: color-mix(in srgb, var(--cream) 70%, transparent);
+  --accent: var(--cream);
+  --accent-foreground: var(--green);
   --destructive: oklch(0.6 0.24 25);
-  --border: oklch(0.9 0.01 92);
-  --input: oklch(0.9 0.01 92);
-  --ring: oklch(0.7 0.02 170);
+  --border: color-mix(in srgb, var(--cream) 12%, transparent);
+  --input: color-mix(in srgb, var(--cream) 12%, transparent);
+  --ring: color-mix(in srgb, var(--cream) 50%, transparent);
+  --cream-5: color-mix(in srgb, var(--cream) 5%, transparent);
+  --cream-7: color-mix(in srgb, var(--cream) 7%, transparent);
+  --cream-10: color-mix(in srgb, var(--cream) 10%, transparent);
+  --cream-12: color-mix(in srgb, var(--cream) 12%, transparent);
+  --cream-55: color-mix(in srgb, var(--cream) 55%, transparent);
+  --cream-70: color-mix(in srgb, var(--cream) 70%, transparent);
+  --cream-80: color-mix(in srgb, var(--cream) 80%, transparent);
 }
 
 @layer base {
@@ -61,25 +70,72 @@
   }
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
-    background-image: radial-gradient(1200px 500px at 20% -10%, rgba(140, 190, 170, 0.18), transparent),
-      radial-gradient(900px 420px at 90% -5%, rgba(190, 170, 120, 0.18), transparent);
+    font-family: "Montserrat", "Segoe UI", system-ui, -apple-system, sans-serif;
+    background-image:
+      radial-gradient(1200px 600px at 20% -10%, color-mix(in srgb, var(--cream) 12%, transparent), transparent),
+      radial-gradient(900px 400px at 90% 0%, color-mix(in srgb, var(--cream) 6%, transparent), transparent);
   }
   h1,
   h2,
   h3,
-  h4 {
-    font-family: "Fraunces", "Times New Roman", serif;
-    letter-spacing: -0.01em;
+  h4,
+  h5,
+  h6 {
+    font-family: "Montserrat", "Segoe UI", system-ui, -apple-system, sans-serif;
   }
 }
 
 @layer components {
   .section-pad {
-    @apply py-16 md:py-24;
+    @apply py-14 md:py-20;
   }
-  .glass-card {
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(248, 247, 243, 0.9));
-    box-shadow: 0 20px 60px rgba(25, 48, 40, 0.08);
+  .bg-green {
+    background-color: var(--green);
+    background-image:
+      radial-gradient(1200px 600px at 20% -10%, color-mix(in srgb, var(--cream) 10%, transparent), transparent),
+      radial-gradient(900px 400px at 90% 0%, color-mix(in srgb, var(--cream) 5%, transparent), transparent);
+  }
+  .bg-cream {
+    background-color: var(--cream);
+  }
+  .text-green {
+    color: var(--green);
+  }
+  .text-cream {
+    color: var(--cream);
+  }
+  .text-cream-55 {
+    color: var(--cream-55);
+  }
+  .text-cream-70 {
+    color: var(--cream-70);
+  }
+  .text-cream-80 {
+    color: var(--cream-80);
+  }
+  .placeholder-cream-55::placeholder {
+    color: var(--cream-55);
+  }
+  .bg-cream-5 {
+    background-color: var(--cream-5);
+  }
+  .bg-cream-7 {
+    background-color: var(--cream-7);
+  }
+  .border-cream-10 {
+    border-color: var(--cream-10);
+  }
+  .border-cream-12 {
+    border-color: var(--cream-12);
+  }
+  .surface {
+    @apply rounded-2xl border;
+    background-color: var(--cream-5);
+    border-color: var(--cream-10);
+  }
+  .card-elevated {
+    @apply rounded-2xl border shadow-sm;
+    background-color: var(--cream-7);
+    border-color: var(--cream-12);
   }
 }
