@@ -138,4 +138,9 @@
     background-color: var(--cream-7);
     border-color: var(--cream-12);
   }
+  .panel {
+    @apply rounded-2xl border;
+    background-color: var(--cream-7);
+    border-color: var(--cream-12);
+  }
 }
