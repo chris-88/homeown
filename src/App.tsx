@@ -11,6 +11,10 @@ import Register from "@/pages/Register"
 import BookCall from "@/pages/BookCall"
 import Legal from "@/pages/Legal"
 
+const basename = typeof window !== "undefined" && window.location.pathname.startsWith("/homeown")
+  ? "/homeown"
+  : "/"
+
 function App() {
   useEffect(() => {
     initUtmFromLocation()
@@ -23,7 +27,7 @@ function App() {
   }, [])
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={basename}>
       <ScrollToTop />
       <Layout>
         <Routes>
