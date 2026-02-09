@@ -14,6 +14,12 @@ import Legal from "@/pages/Legal"
 function App() {
   useEffect(() => {
     initUtmFromLocation()
+
+    const params = new URLSearchParams(window.location.search)
+    const redirect = params.get("redirect")
+    if (redirect) {
+      window.history.replaceState(null, "", redirect)
+    }
   }, [])
 
   return (
